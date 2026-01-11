@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emerald Stone Wallet | Depositar</title>
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body class="bg-dark text-light">
+
+    <main class="container min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="row w-100 justify-content-center">
+            <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+                <div class="card shadow-lg bg-secondary border-0">
+                    <div class="card-body">
+
+                        <!-- Título -->
+                        <h5 class="text-center mb-3">Depositar fondos</h5>
+
+                        <!-- Formulario de depósito -->
+                        <form id="depositForm">
+                            <div class="form-group">
+                                <label for="amount">Monto a depositar</label>
+                                <input type="number" class="form-control" id="amount" placeholder="Ingrese monto" required>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-block">Realizar depósito</button>
+                        </form>
+
+                        <!-- Saldo actualizado -->
+                        <div class="mt-4 text-center">
+                            <h6>Saldo actual:</h6>
+                            <p id="currentBalance">$0.00</p>
+                        </div>
+
+                        <!-- Botón regresar al menú -->
+                        <div class="text-center mt-3">
+                            <a href="menu.html" class="btn btn-primary">Volver al menú</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Script para manejar depósitos -->
+    <script src="js/main.js"></script>
+    <script>
+        // Inicializar saldo
+        let balance = 0;
+
+        $(document).ready(function() {
+            $("#depositForm").submit(function(e) {
+                e.preventDefault(); // evitar recarga de página
+                const amount = parseFloat($("#amount").val());
+                if (amount > 0) {
+                    balance += amount;
+                    $("#currentBalance").text(`$${balance.toFixed(2)}`);
+                    $("#amount").val(""); // limpiar input
+                } else {
+                    alert("Ingrese un monto válido");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
