@@ -1,0 +1,6 @@
+Color	Uso principal	Código HEX
+Verde Bootstrap	Botones, iconos, destacados	#28a745
+Verde oscuro hover	Hover botones success	#218838
+Gris oscuro (bg-body)	Fondo principal	#343a40
+Gris medio (bg-header)	Header, Footer, párrafos secundarios	#6c757d
+Blanco suave	Texto principal	#f8f9fa

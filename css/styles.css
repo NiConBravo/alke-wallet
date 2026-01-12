@@ -31,9 +31,13 @@
   padding: 2rem;
 }
 
-/* footer fijo */
-.auth-footer {
-  padding: 0.75rem 1rem;
+.footer-social img {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.footer-social img:hover {
+    opacity: 1;
 }
 /* ===== Menú ===== */
 
@@ -56,14 +60,19 @@
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Cards */
-.dashboard-card {
+.card.dashboard-card {
     background-color: #2b2b2b;
     color: #fff;
     border: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
+/* Deposit */
+.card.body{    
+    background-color: #2b2b2b;
+    color: #fff;
+    border: none;
+
+}
 /* Notificaciones */
 .notification-icon {
     padding: 6px;
@@ -94,5 +103,16 @@
 
     .app-lead {
         font-size: 1.25rem;
+    }
+}
+/* Ajustar contenido principal */
+main {
+    padding-top: 70px;
+}
+
+@media(min-width: 768px) {
+    main {
+        padding-top: 20px;
+        margin-left: 0; /* eliminar */
     }
 }
