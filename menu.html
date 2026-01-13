@@ -109,7 +109,7 @@
                     <div class="card dashboard-card">
                         <div class="card-body">
                             <h6 class="card-title">Balance total</h6>
-                            <p class="display-4 mb-0">$1.250.000</p>
+                            <p id="menuBalance" class="display-4 mb-0">$0</p>
                         </div>
                     </div>
                 </div>
@@ -197,5 +197,12 @@
 
   <!-- Custom JS -->
   <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+    const balance = parseFloat(localStorage.getItem("balance")) || 0;
+    $("#menuBalance").text(`$${balance.toFixed(2)}`);
+});
+
+    </script>
 </body>
 </html>
