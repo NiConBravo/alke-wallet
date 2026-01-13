@@ -77,27 +77,38 @@
     <!-- Custom JS -->
     <script src="js/main.js"></script>
     <script>
-        $(document).ready(function () {
+$(document).ready(function () {
 
-        // Obtener balance o inicializar
-        let balance = parseFloat(localStorage.getItem("balance")) || 0;
+    // Obtener balance o inicializar
+    let balance = parseFloat(localStorage.getItem("balance")) || 0;
+    $("#currentBalance").text(`$${balance.toFixed(2)}`);
+
+    $("#depositForm").submit(function (e) {
+        e.preventDefault();
+
+        const amount = parseFloat($("#amount").val());
+
+        if (isNaN(amount) || amount <= 0) {
+            alert("Ingrese un monto válido");
+            return;
+        }
+
+        // Actualizar balance
+        balance += amount;
+        localStorage.setItem("balance", balance);
         $("#currentBalance").text(`$${balance.toFixed(2)}`);
 
-        $("#depositForm").submit(function (e) {
-            e.preventDefault();
+        // ✅ REGISTRAR TRANSACCIÓN
+        if (typeof saveTransaction === "function") {
+            saveTransaction("Depósito", amount);
+        } else {
+            console.error("saveTransaction no está disponible");
+        }
 
-            const amount = parseFloat($("#amount").val());
-
-            if (amount > 0) {
-                balance += amount;
-                localStorage.setItem("balance", balance);
-                $("#currentBalance").text(`$${balance.toFixed(2)}`);
-                $("#amount").val("");
-            } else {
-                alert("Ingrese un monto válido");
-            }
-        });
+        // Limpiar input
+        $("#amount").val("");
     });
+});
 </script>
 
 </body>

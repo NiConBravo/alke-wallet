@@ -122,7 +122,9 @@ $(document).ready(function(){
     // Enviar dinero
     $("#sendmoney-button").click(function () {
         const amount = parseFloat($("#sendmoney-amount").val());
+        const recipient = $("#contact").val() ? $("#contact").val().trim() : "Sin destinatario";
 
+        // Validaciones
         if (isNaN(amount) || amount <= 0) {
             alert("Ingrese un monto válido");
             return;
@@ -133,16 +135,31 @@ $(document).ready(function(){
             return;
         }
 
+        // Restar del balance
         balance -= amount;
         localStorage.setItem("balance", balance);
         $("#currentBalance").text(`Saldo: $${balance.toFixed(2)}`);
         $("#sendmoney-amount").val("");
 
-        alert("Dinero enviado con éxito");
+        // Guardar transacción
+        const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+        const newTx = {
+            date: new Date().toLocaleDateString("es-CL"),
+            type: "Transferencia",
+            amount: amount,
+            recipient: recipient
+        };
+        transactions.unshift(newTx);
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+
+        alert(`Dinero enviado con éxito a ${recipient}`);
     });
 
 });
 </script>
+
+
+
 
 </body>
 </html>

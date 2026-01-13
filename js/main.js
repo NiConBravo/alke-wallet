@@ -151,6 +151,34 @@ $(document).ready(function () {
         window.location.replace("login.html"); // o index.html
     });
 
+    function saveTransaction(type, amount) {
+    const transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+
+    const newTransaction = {
+        date: new Date().toLocaleDateString("es-CL"),
+        type: type,
+        amount: amount
+    };
+
+    transactions.unshift(newTransaction);
+    localStorage.setItem("transactions", JSON.stringify(transactions));
+}
+    $("#logoutBtn").on("click", function (e) {
+        e.preventDefault();
+
+        localStorage.clear();
+        sessionStorage.clear();
+
+        window.location.href = "login.html";
+    });
+
+function getBalance() {
+    return parseFloat(localStorage.getItem("balance")) || 0;
+}
+
+function getTransactions() {
+    return JSON.parse(localStorage.getItem("transactions")) || [];
+}
 
     /* =====================================================
        ALERTAS

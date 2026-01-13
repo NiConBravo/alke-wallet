@@ -85,6 +85,12 @@
     font-size: 0.7rem;
     padding: 4px 6px;
 }
+.card.main{    
+    background-color: #2b2b2b;
+    color: #fff;
+    border: none;
+
+}
 
 /* Mobile tweaks */
 @media (max-width: 767px) {
